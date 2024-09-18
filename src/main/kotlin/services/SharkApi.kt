@@ -1,5 +1,9 @@
 package com.yuri_kotlin_learning.services
 
+import com.yuri_kotlin_learning.models.User
+import com.yuri_kotlin_learning.values.Birthday
+import com.yuri_kotlin_learning.values.Email
+import com.yuri_kotlin_learning.values.Username
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.json.Json
@@ -72,4 +76,15 @@ data class ApiGamer(
     val nickname: String,
     @SerialName("idInterno")
     val internalId: String
-)
+) {
+    fun toUser(): Result<User> {
+        val username = Username.from(this.name)
+            .getOrElse { return Result.failure(IllegalStateException(it.message)) }
+        val email = Email.from(this.email)
+            .getOrElse { return Result.failure(IllegalStateException(it.message)) }
+        val birthday = Birthday.from(dateOfBirth)
+            .getOrElse { return Result.failure(IllegalStateException(it.message)) }
+
+        return User(username, email, birthday, this.nickname).let { Result.success(it) }
+    }
+}
