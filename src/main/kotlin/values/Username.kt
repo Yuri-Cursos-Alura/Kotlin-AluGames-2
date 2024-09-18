@@ -12,6 +12,10 @@ value class Username(val value: String) {
             return runCatching { Username(value) }
         }
     }
+
+    override fun toString(): String {
+        return value;
+    }
 }
 
 sealed class UsernameValidationException(message: String) : Exception(message) {

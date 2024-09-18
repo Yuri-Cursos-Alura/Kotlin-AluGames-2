@@ -17,6 +17,10 @@ value class Email(val value: String) {
         }
     }
 
+    override fun toString(): String {
+        return value
+    }
+
 }
 
 sealed class EmailValidationException(message: String) : Exception(message) {

@@ -1,6 +1,8 @@
 package com.yuri_kotlin_learning.values
 
 import java.time.LocalDate
+import java.time.LocalDateTime
+import java.time.format.DateTimeFormatter
 
 @JvmInline
 value class Birthday(val value: LocalDate) {
@@ -10,9 +12,19 @@ value class Birthday(val value: LocalDate) {
     }
 
     companion object {
+        val standardFormat = DateTimeFormatter.ofPattern("dd/MM/yyyy")
+
         fun from(value: LocalDate): Result<Birthday> {
             return runCatching { Birthday(value) }
         }
+
+        fun from(value: String, format: DateTimeFormatter? = null): Result<Birthday> {
+            return runCatching { Birthday(LocalDate.parse(value, format ?: standardFormat)) }
+        }
+    }
+
+    override fun toString(): String {
+        return value.format(DateTimeFormatter.ofPattern("dd/MM/yyyy"))
     }
 }
 
