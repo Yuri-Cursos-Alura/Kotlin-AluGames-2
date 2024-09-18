@@ -27,11 +27,15 @@ class SharkApi(
         return runCatching { _json.decodeFromString<List<ApiGamer>>(str) }.getOrNull()
     }
 
-    fun getGameById(id: Int): ApiGame? {
-        val uri = URI.create("$BASE_URI?id=$id")
-        val request = HttpRequest.newBuilder()
+    private fun String.toGetRequest(): HttpRequest {
+        val uri = URI.create(this)
+        return HttpRequest.newBuilder()
             .uri(uri)
             .build()
+    }
+
+    fun getGameById(id: Int): ApiGame? {
+        val request = "$BASE_URI?id=$id".toGetRequest()
 
         val response = _client.send(request, HttpResponse.BodyHandlers.ofString())
 
@@ -41,10 +45,8 @@ class SharkApi(
     }
 
     fun getGamers(): List<ApiGamer>? {
-        val uri = URI.create("https://raw.githubusercontent.com/jeniblodev/arquivosJson/main/gamers.json")
-        val request = HttpRequest.newBuilder()
-            .uri(uri)
-            .build()
+        val request = "https://raw.githubusercontent.com/jeniblodev/arquivosJson/main/gamers.json"
+            .toGetRequest()
 
         val response = _client.send(request, HttpResponse.BodyHandlers.ofString())
 
