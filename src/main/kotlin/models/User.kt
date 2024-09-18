@@ -9,6 +9,7 @@ data class User(
     var name: Username,
     var email: Email,
     var dateOfBirth: Birthday,
+    var nickname: String,
     var games: MutableList<Game> = mutableListOf()
 ) {
     val id: UUID = UUID.randomUUID()

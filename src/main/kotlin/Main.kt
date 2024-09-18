@@ -89,7 +89,7 @@ fun createUser(): User {
         }
     } while (birthday.isFailure)
 
-    return User(name = name.getOrThrow(), email = email.getOrThrow(), dateOfBirth = birthday.getOrThrow())
+    return User(name = name.getOrThrow(), email = email.getOrThrow(), dateOfBirth = birthday.getOrThrow(), nickname = "Yuri")
 }
 
 fun askUser(): Game? {
