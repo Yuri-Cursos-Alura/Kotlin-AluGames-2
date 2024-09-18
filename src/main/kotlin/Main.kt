@@ -122,7 +122,7 @@ fun askUser(): Game? {
     println("Digite uma descrição: ")
     val description = Util.reading.nextLine()
 
-    val game = Game.from(gameFromApi, description)
+    val game = gameFromApi.toGame(description)
 
     return game
 }
