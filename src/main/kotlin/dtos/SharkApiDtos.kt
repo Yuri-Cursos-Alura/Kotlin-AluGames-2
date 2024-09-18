@@ -42,3 +42,19 @@ data class ApiGamer(
         return User(username, email, birthday, this.nickname).let { Result.success(it) }
     }
 }
+
+@Serializable
+data class GitApiGame(
+    @SerialName("titulo")
+    val title: String,
+    @SerialName("capa")
+    val thumb: String,
+    @SerialName("preco")
+    val preco: Float,
+    @SerialName("descricao")
+    val description: String
+) {
+    fun toGame(): Game {
+        return Game(this.title, this.thumb, this.description)
+    }
+}

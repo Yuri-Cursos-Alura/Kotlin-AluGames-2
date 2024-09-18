@@ -2,6 +2,7 @@ package com.yuri_kotlin_learning.services
 
 import com.yuri_kotlin_learning.dtos.ApiGame
 import com.yuri_kotlin_learning.dtos.ApiGamer
+import com.yuri_kotlin_learning.dtos.GitApiGame
 import kotlinx.serialization.json.Json
 import java.net.URI
 import java.net.http.HttpClient
@@ -17,10 +18,16 @@ class SharkApi(
 
     companion object {
         private const val BASE_URI = "https://www.cheapshark.com/api/1.0/games"
+        private const val URI_GAMES = "https://raw.githubusercontent.com/jeniblodev/arquivosJson/main/jogos.json"
+        private const val URI_GAMERS = "https://raw.githubusercontent.com/jeniblodev/arquivosJson/main/gamers.json"
     }
 
-    private fun toGame(str: String): ApiGame? {
+    private fun toApiGame(str: String): ApiGame? {
         return runCatching { _json.decodeFromString<ApiGame>(str) }.getOrNull()
+    }
+
+    private fun toGitApiGameList(str: String): List<GitApiGame>? {
+        return runCatching { _json.decodeFromString<List<GitApiGame>>(str) }.getOrNull()
     }
 
     private fun toApiGamer(str: String): List<ApiGamer>? {
@@ -41,11 +48,19 @@ class SharkApi(
 
         val text: String = response?.body() ?: return null
 
-        return toGame(text)
+        return toApiGame(text)
+    }
+
+    fun getGames(): List<GitApiGame>? {
+        val response = _client.send(URI_GAMES.toGetRequest(), HttpResponse.BodyHandlers.ofString())
+
+        val text: String = response?.body() ?: return emptyList()
+
+        return toGitApiGameList(text)
     }
 
     fun getGamers(): List<ApiGamer>? {
-        val request = "https://raw.githubusercontent.com/jeniblodev/arquivosJson/main/gamers.json"
+        val request = URI_GAMERS
             .toGetRequest()
 
         val response = _client.send(request, HttpResponse.BodyHandlers.ofString())
