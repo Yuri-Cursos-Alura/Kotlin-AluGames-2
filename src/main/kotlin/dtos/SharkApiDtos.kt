@@ -4,6 +4,7 @@ import com.yuri_kotlin_learning.models.Game
 import com.yuri_kotlin_learning.models.User
 import com.yuri_kotlin_learning.values.Birthday
 import com.yuri_kotlin_learning.values.Email
+import com.yuri_kotlin_learning.values.Money
 import com.yuri_kotlin_learning.values.Username
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
@@ -11,7 +12,7 @@ import kotlinx.serialization.Serializable
 @Serializable
 data class ApiGame(val info: ApiInfo) {
     fun toGame(description: String): Game {
-        return Game(this.info.title, this.info.thumb, description)
+        return Game(this.info.title, this.info.thumb, description, Money(0))
     }
 }
 
@@ -55,6 +56,9 @@ data class GitApiGame(
     val description: String
 ) {
     fun toGame(): Game {
-        return Game(this.title, this.thumb, this.description)
+        val money = Money.from(preco)
+            .getOrElse { throw IllegalStateException(it.message) }
+
+        return Game(this.title, this.thumb, this.description, price = money)
     }
 }
