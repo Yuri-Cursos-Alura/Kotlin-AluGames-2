@@ -3,6 +3,7 @@ package com.yuri_kotlin_learning
 import com.yuri_kotlin_learning.models.Rent
 import com.yuri_kotlin_learning.services.SharkApi
 import com.yuri_kotlin_learning.values.DateRange
+import java.time.LocalDate
 
 fun main() {
     val sharkApi = SharkApi()
@@ -18,7 +19,11 @@ fun main() {
     val myGamer = gamers.getOrNull(3) ?: throw IllegalStateException("Gamer not found")
     val myGame = games.lastOrNull() ?: throw IllegalStateException("List was empty")
 
-    val range = DateRange.from("19/09/2024", "23/09/2024").getOrThrow()
+
+
+    val range = DateRange.from(LocalDate.now(), LocalDate.now().plusYears(7)).getOrThrow()
+
+    println("Days: ${range.durationInDays()}")
 
     val rent = Rent(myGame, myGamer, range)
 
