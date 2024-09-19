@@ -37,6 +37,10 @@ data class DateRange(
         return ChronoUnit.DAYS.between(start, end)
     }
 
+    fun overlaps(other: DateRange): Boolean {
+        return this.start <= other.end && other.start <= this.end
+    }
+
     override fun toString(): String {
         return "$start - $end"
     }
