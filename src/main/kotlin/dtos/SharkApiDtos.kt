@@ -8,6 +8,7 @@ import values.Money
 import values.Username
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
+import models.PlanTier
 
 @Serializable
 data class ApiGame(val info: ApiInfo) {
@@ -40,7 +41,7 @@ data class ApiGamer(
         val birthday = Birthday.from(dateOfBirth)
             .getOrElse { return Result.failure(IllegalStateException(it.message)) }
 
-        return User(username, email, birthday, this.nickname).let { Result.success(it) }
+        return User(username, email, birthday, this.nickname, planTier = PlanTier.NONE).let { Result.success(it) }
     }
 }
 

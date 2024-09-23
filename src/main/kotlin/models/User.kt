@@ -10,6 +10,7 @@ data class User(
     var email: Email,
     var dateOfBirth: Birthday,
     var nickname: String,
+    var planTier: PlanTier,
     private val _rentedGames: MutableList<Rent> = mutableListOf()
 ) {
     val id: UUID = UUID.randomUUID()
@@ -20,3 +21,15 @@ data class User(
             get() = _rentedGames.toList()
 }
 
+enum class PlanTier {
+    NONE,
+    STANDARD,
+    PREMIUM;
+
+    val priceMultiplier: Double
+        get() = when (this) {
+            NONE -> 1.0
+            STANDARD -> 0.9
+            PREMIUM -> 0.8
+        }
+}

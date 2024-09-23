@@ -21,11 +21,11 @@ fun main() {
 
     println("Days: ${range.durationInDays()}")
 
-    val rent = Rent(myGame, range)
+    val rent = Rent(myGame, myGamer, range)
 
     myGamer.rent(rent)
     val anotherGame = games.getOrNull(1) ?: throw IllegalStateException("Game not found")
-    myGamer.rent(Rent(anotherGame, DateRange(LocalDate.now(), LocalDate.now().plusDays(3))))
+    myGamer.rent(Rent(anotherGame, myGamer, DateRange(LocalDate.now(), LocalDate.now().plusDays(3))))
 
     myGamer.rentedGames.forEach(::println)
 }
