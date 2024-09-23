@@ -1,3 +1,4 @@
+import models.PlanTier
 import models.Rent
 import services.SharkApi
 import values.DateRange
@@ -28,4 +29,5 @@ fun main() {
     myGamer.rent(Rent(anotherGame, myGamer, DateRange(LocalDate.now(), LocalDate.now().plusDays(3))))
 
     myGamer.rentedGames.forEach(::println)
+    println("Total monthly price: ${myGamer.totalMonthPrice}")
 }

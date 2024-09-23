@@ -10,12 +10,17 @@ data class Rent(
 ) {
     companion object {
         fun from(game: Game, user: User, rentDuration: DateRange): Result<Rent> {
-            return runCatching { Rent(game, user, rentDuration) }
+            return Result.success(Rent(game, user, rentDuration))
         }
     }
 
     val price: Money
         get() {
+            user.rentedGames
+                .sortedBy { it.rentDuration.start }
+                .indexOf(this)
+                .let { if ((it + 1) <= user.planTier.gameQuantity) return Money(0) }
+
             return Money((game.price.cents * rentDuration.durationInDays() * user.planTier.priceMultiplier).toLong())
         }
 
