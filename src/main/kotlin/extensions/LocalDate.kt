@@ -1,4 +1,4 @@
-package com.yuri_kotlin_learning.extensions
+package extensions
 
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter

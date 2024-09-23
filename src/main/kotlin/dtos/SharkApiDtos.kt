@@ -1,11 +1,11 @@
-package com.yuri_kotlin_learning.dtos
+package dtos
 
-import com.yuri_kotlin_learning.models.Game
-import com.yuri_kotlin_learning.models.User
-import com.yuri_kotlin_learning.values.Birthday
-import com.yuri_kotlin_learning.values.Email
-import com.yuri_kotlin_learning.values.Money
-import com.yuri_kotlin_learning.values.Username
+import models.Game
+import models.User
+import values.Birthday
+import values.Email
+import values.Money
+import values.Username
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 

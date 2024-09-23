@@ -1,8 +1,8 @@
 //package com.yuri_kotlin_learning
 //
-//import com.yuri_kotlin_learning.models.Game
-//import com.yuri_kotlin_learning.models.User
-//import com.yuri_kotlin_learning.services.SharkApi
+//import models.Game
+//import models.User
+//import services.SharkApi
 //import com.yuri_kotlin_learning.values.*
 //import java.time.LocalDate
 //import java.time.format.DateTimeFormatter

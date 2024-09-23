@@ -1,8 +1,8 @@
-package com.yuri_kotlin_learning.models
+package models
 
-import com.yuri_kotlin_learning.values.Birthday
-import com.yuri_kotlin_learning.values.Email
-import com.yuri_kotlin_learning.values.Username
+import values.Birthday
+import values.Email
+import values.Username
 import java.util.*
 
 data class User(

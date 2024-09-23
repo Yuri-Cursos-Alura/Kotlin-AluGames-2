@@ -1,9 +1,6 @@
-package com.yuri_kotlin_learning
-
-import com.yuri_kotlin_learning.models.Rent
-import com.yuri_kotlin_learning.models.User
-import com.yuri_kotlin_learning.services.SharkApi
-import com.yuri_kotlin_learning.values.DateRange
+import models.Rent
+import services.SharkApi
+import values.DateRange
 import java.time.LocalDate
 
 fun main() {

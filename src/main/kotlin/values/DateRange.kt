@@ -1,6 +1,6 @@
-package com.yuri_kotlin_learning.values
+package values
 
-import com.yuri_kotlin_learning.extensions.LocalDateExt
+import extensions.LocalDateExt
 import java.time.LocalDate
 import java.time.temporal.ChronoUnit
 
@@ -23,7 +23,8 @@ data class DateRange(
 
         fun from (start: String, end: String): Result<DateRange> {
             return runCatching {
-                DateRange(LocalDateExt.ddMMyyyy(start) ?: throw IllegalArgumentException("Invalid date format: $start"),
+                DateRange(
+                    LocalDateExt.ddMMyyyy(start) ?: throw IllegalArgumentException("Invalid date format: $start"),
                     LocalDateExt.ddMMyyyy(end) ?: throw IllegalArgumentException("Invalid date format: $end"))
             }
         }

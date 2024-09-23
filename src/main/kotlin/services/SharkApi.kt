@@ -1,8 +1,8 @@
-package com.yuri_kotlin_learning.services
+package services
 
-import com.yuri_kotlin_learning.dtos.ApiGame
-import com.yuri_kotlin_learning.dtos.ApiGamer
-import com.yuri_kotlin_learning.dtos.GitApiGame
+import dtos.ApiGame
+import dtos.ApiGamer
+import dtos.GitApiGame
 import kotlinx.serialization.json.Json
 import java.net.URI
 import java.net.http.HttpClient

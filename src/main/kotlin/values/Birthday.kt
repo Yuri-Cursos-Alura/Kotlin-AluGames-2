@@ -1,7 +1,6 @@
-package com.yuri_kotlin_learning.values
+package values
 
 import java.time.LocalDate
-import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 
 @JvmInline

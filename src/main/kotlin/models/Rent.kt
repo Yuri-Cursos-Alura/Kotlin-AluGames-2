@@ -1,7 +1,7 @@
-package com.yuri_kotlin_learning.models
+package models
 
-import com.yuri_kotlin_learning.values.DateRange
-import com.yuri_kotlin_learning.values.Money
+import values.DateRange
+import values.Money
 
 data class Rent(
     val game: Game,

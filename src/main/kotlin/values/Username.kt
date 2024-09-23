@@ -1,4 +1,4 @@
-package com.yuri_kotlin_learning.values
+package values
 
 @JvmInline
 value class Username(val value: String) {
