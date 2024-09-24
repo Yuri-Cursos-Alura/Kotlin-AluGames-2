@@ -21,7 +21,14 @@ data class Rent(
                 .indexOf(this)
                 .let { if ((it + 1) <= user.planTier.gameQuantity) return Money(0) }
 
-            return Money((game.price.cents * rentDuration.durationInDays() * user.planTier.priceMultiplier).toLong())
+            val reputationDiscount: Double = if (user.average > 8) user.planTier.reputationMultiplier else 1.0
+
+            return Money((
+                    game.price.cents *
+                    rentDuration.durationInDays() *
+                    user.planTier.basePriceMultiplier *
+                    reputationDiscount
+                    ).toLong())
         }
 
     override fun toString(): String {

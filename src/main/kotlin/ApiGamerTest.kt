@@ -30,4 +30,10 @@ fun main() {
 
     myGamer.rentedGames.forEach(::println)
     println("Total monthly price: ${myGamer.totalMonthPrice}")
+
+    myGamer.recomend(10)
+    myGamer.recomend(9)
+    myGamer.recomend(8)
+    println("Average grade: ${myGamer.average}")
+    println("Total monthly price with good reputation: ${myGamer.totalMonthPrice}")
 }

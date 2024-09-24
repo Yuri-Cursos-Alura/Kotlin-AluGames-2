@@ -41,7 +41,7 @@ data class ApiGamer(
         val birthday = Birthday.from(dateOfBirth)
             .getOrElse { return Result.failure(IllegalStateException(it.message)) }
 
-        return User(username, email, birthday, this.nickname, planTier = PlanTier.NONE).let { Result.success(it) }
+        return User(username, email, birthday, this.nickname, planTier = PlanTier.PREMIUM).let { Result.success(it) }
     }
 }
 
