@@ -2,6 +2,7 @@ import models.PlanTier
 import models.Rent
 import services.SharkApi
 import values.DateRange
+import values.Grade
 import java.time.LocalDate
 
 fun main() {
@@ -31,9 +32,9 @@ fun main() {
     myGamer.rentedGames.forEach(::println)
     println("Total monthly price: ${myGamer.totalMonthPrice}")
 
-    myGamer.recomend(10)
-    myGamer.recomend(9)
-    myGamer.recomend(8)
+    myGamer.recomend(Grade.from(10).getOrThrow())
+    myGamer.recomend(Grade.from(9).getOrThrow())
+    myGamer.recomend(Grade.from(8).getOrThrow())
     println("Average grade: ${myGamer.average}")
     println("Total monthly price with good reputation: ${myGamer.totalMonthPrice}")
 }

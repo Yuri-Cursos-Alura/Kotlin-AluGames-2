@@ -1,10 +1,7 @@
 package models
 
 import interfaces.Recomendable
-import values.Birthday
-import values.Email
-import values.Money
-import values.Username
+import values.*
 import java.util.*
 
 data class User(
@@ -16,6 +13,7 @@ data class User(
 ) : Recomendable {
     private val _rentedGames: MutableList<Rent> = mutableListOf()
     private val _grades: MutableList<Int> = mutableListOf()
+    private val _gameRecommendations: MutableList<Pair<Game, Int>> = mutableListOf()
     val id: UUID = UUID.randomUUID()
 
 
@@ -30,8 +28,16 @@ data class User(
     override val average: Double
         get() = _grades.average()
 
-    override fun recomend(grade: Int) {
-        _grades.add(grade.coerceIn(1, 10))
+    override fun recomend(grade: Grade) {
+        _grades.add(grade.value)
+    }
+
+    enum class RecommendGameResult { SUCCESS, ALREADY_RECOMMENDED }
+    fun recommendGame(game: Game, grade: Grade): RecommendGameResult {
+        if (_gameRecommendations.any { it.first == game }) return RecommendGameResult.ALREADY_RECOMMENDED
+
+        _gameRecommendations.add(game to grade.value)
+        return RecommendGameResult.SUCCESS
     }
 }
 

@@ -1,6 +1,8 @@
 package interfaces
 
+import values.Grade
+
 interface Recomendable {
     val average: Double
-    fun recomend(grade: Int)
+    fun recomend(grade: Grade)
 }
